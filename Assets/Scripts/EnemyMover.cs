@@ -26,7 +26,7 @@ public class EnemyMover : MonoBehaviour
     }
 	private void Move()
 	{
-		while (index != path.Count)
+		if(index!= path.Count)
 		{
 			transform.position = Vector2.MoveTowards(transform.position, path[index].transform.position, movespeed * Time.deltaTime);
 
@@ -34,9 +34,11 @@ public class EnemyMover : MonoBehaviour
 			{
 				index++;
 			}
-			else if (index == path.Count && looping == true) {
-				index = 0;
-			}
+			
+		}
+		else if (index == path.Count-1 && looping == true)
+		{
+			index = 0;
 		}
 	}
 }
