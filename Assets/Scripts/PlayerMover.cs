@@ -11,7 +11,7 @@ public class PlayerMover : MonoBehaviour
 	//Variable Declarations
 	public bool facingRight =true;
 	public int moveSpeed =15;
-	public int jumpPower = 15000;
+	public int jumpPower = 5;
 	public float moveDelta;
 
 
@@ -26,7 +26,7 @@ public class PlayerMover : MonoBehaviour
 			//sideways movement
 		moveDelta = Input.GetAxis("Horizontal");
 		//jump
-		if (Input.GetButtonDown("Jump"))
+		if (Input.GetButtonUp("Jump"))
 		{
 			Jump();
 		}
@@ -39,7 +39,7 @@ public class PlayerMover : MonoBehaviour
 	}
 	public void Jump()
 	{
-		GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpPower);
+		GetComponent<Rigidbody2D>().AddForce(new Vector2(0f,5f), ForceMode2D.Impulse);
 		Debug.Log(Vector2.up * jumpPower);
 	}
 }
