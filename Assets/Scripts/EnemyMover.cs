@@ -37,6 +37,10 @@ public class EnemyMover : MonoBehaviour
 		if (waypointIndex == waypoints.Length -1)
 			waypointIndex = 0;
 	}
+	public void OnTriggerEnter(Collider other)
+	{
+		Destroy(other.gameObject);
+	}
 
 }
 
