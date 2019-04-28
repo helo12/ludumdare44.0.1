@@ -4,43 +4,41 @@ using UnityEngine;
 
 public class EnemyMover : MonoBehaviour
 {
+	[SerializeField]
+	Transform[] waypoints;
 
 	[SerializeField]
-	private List<Transform> path = new List<Transform>();
-	[SerializeField]
-	private float movespeed = 2f;
-	[SerializeField]
-	private bool looping = false;
-	private int index = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-		transform.position = path[index].transform.position;
-        
-    }
+	float moveSpeed = 2f;
 
-    // Update is called once per frame
-    void Update()
-    {
-		Move();
-    }
-	private void Move()
+	int waypointIndex = 0;
+
+	void Start()
 	{
-		if(index!= path.Count)
-		{
-			transform.position = Vector2.MoveTowards(transform.position, path[index].transform.position, movespeed * Time.deltaTime);
-
-			if(transform.position == path[index].transform.position)
-			{
-				index++;
-			}
-			
-		}
-		else if (index == path.Count-1 && looping == true)
-		{
-			index = 0;
-		}
+		transform.position = waypoints[waypointIndex].transform.position;
 	}
+
+	void Update()
+	{
+		Move();
+	}
+
+	void Move()
+	{
+		transform.position = Vector2.MoveTowards(transform.position,
+												waypoints[waypointIndex].transform.position,
+												moveSpeed * Time.deltaTime);
+
+		if (transform.position == waypoints[waypointIndex].transform.position)
+		{
+			waypointIndex += 1;
+			Debug.Log(waypointIndex);
+		}
+
+		if (waypointIndex == waypoints.Length -1)
+			waypointIndex = 0;
+	}
+
 }
+
 
 
