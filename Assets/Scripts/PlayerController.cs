@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
 	//Author: Tim Allen
@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
 	public int moveSpeed =15;
 	public int jumpPower = 5;
 	public float moveDelta;
+
+	bool wonLevel = false;
 
 
     // Update is called once per frame
@@ -26,7 +28,7 @@ public class PlayerController : MonoBehaviour
 			//sideways movement
 		moveDelta = Input.GetAxis("Horizontal");
 		//jump
-		if (Input.GetButtonUp("Jump"))
+		if (Input.GetButtonDown("Jump"))
 		{
 			Jump();
 		}
@@ -41,5 +43,32 @@ public class PlayerController : MonoBehaviour
 	{
 		GetComponent<Rigidbody2D>().AddForce(new Vector2(0f,5f), ForceMode2D.Impulse);
 		Debug.Log(Vector2.up * jumpPower);
+	}
+
+	
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.tag == "Win")
+		{
+				
+				SceneManager.LoadScene(GameStatsTracker.PlayerStats.Level.ToString(), LoadSceneMode.Additive);
+
+			//switch (caseSwitch)
+			//{
+			//	case 1:
+			//		Console.WriteLine("Case 1");
+			//		break;
+			//	case 2:
+			//		Console.WriteLine("Case 2");
+			//		break;
+			//	default:
+			//		Console.WriteLine("Default case");
+			//		break;
+			//}
+		}
+		else
+		{
+			Debug.Log("I did nothing:)");
+		}
 	}
 }
