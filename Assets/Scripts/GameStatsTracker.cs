@@ -6,7 +6,7 @@ public static class GameStatsTracker
 {
 	public static class PlayerStats
 	{
-		private static int HP, money, points;
+		private static int HP=4, money=0, points=0, level=0;
 		private static bool dead = false;
 
 		public static int HealthPoints
@@ -54,6 +54,17 @@ public static class GameStatsTracker
 			set
 			{
 				points = value;
+			}
+		}
+		public static int Level
+		{
+			get
+			{
+				return level;
+			}
+			set
+			{
+				level = value;
 			}
 		}
 	}
