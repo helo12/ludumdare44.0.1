@@ -29,11 +29,15 @@ public class PlayerController : MonoBehaviour
 			//sideways movement
 		moveDelta = Input.GetAxis("Horizontal");
 		//jump
-		if (Input.GetButtonUp("Jump"))
+		if (Input.GetButtonDown("Jump"))
 		{
 			Jump();
 		}
 		//ANIMATION
+		if(facingRight == true && )
+		{
+
+		}
 		//CHARACTER DIRECTION
 		//PHYSICS
 		gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2((moveDelta * moveSpeed), gameObject.GetComponent<Rigidbody2D>().velocity.y);
@@ -45,9 +49,9 @@ public class PlayerController : MonoBehaviour
 		GetComponent<Rigidbody2D>().AddForce(new Vector2(0f,5f), ForceMode2D.Impulse);
 		Debug.Log(Vector2.up * jumpPower);
 	}
-	public void OnTriggerEnter(Collider other)
-	{
-		Debug.Log("I tried to destroy something");
-		Destroy(other.gameObject);
-	}
+	//void OnTriggerEnter2D(Collider2D other)
+	//{
+	//	Debug.Log("I tried to destroy something");
+	//	Destroy(other.gameObject);
+	//}
 }
