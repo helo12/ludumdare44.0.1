@@ -37,9 +37,17 @@ public class EnemyMover : MonoBehaviour
 		if (waypointIndex == waypoints.Length -1)
 			waypointIndex = 0;
 	}
-	public void OnTriggerEnter(Collider other)
+	void OnTriggerEnter2D(Collider2D other)
 	{
-		Destroy(other.gameObject);
+		if (other.tag == "Player")
+		{
+			Debug.Log("I tried to destroy something");
+			Destroy(other.gameObject);
+		}
+		else
+		{
+			Debug.Log("I did nothing:)");
+		}
 	}
 
 }
