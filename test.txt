@@ -1,1 +1,10 @@
-test
+Todo:
+
+Implement the following mechanics:
+Player Death
+Round Ending
+Game Ending
+Camera Moving independently of player
+UI 
+	Money, Health, Score.
+
