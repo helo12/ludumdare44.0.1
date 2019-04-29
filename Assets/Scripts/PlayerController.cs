@@ -45,26 +45,20 @@ public class PlayerController : MonoBehaviour
 		Debug.Log(Vector2.up * jumpPower);
 	}
 
-	
+
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.tag == "Win")
+	Debug.Log("I was called on trigger enter");
+		if (other.enabled)
 		{
+			if (other.tag == "Win")
+			{
+				other.enabled = false;
+				GameStatsTracker.PlayerStats.Level++;
+				SceneManager.LoadScene(GameStatsTracker.PlayerStats.Level.ToString());
+			
 				
-				SceneManager.LoadScene(GameStatsTracker.PlayerStats.Level.ToString(), LoadSceneMode.Additive);
-
-			//switch (caseSwitch)
-			//{
-			//	case 1:
-			//		Console.WriteLine("Case 1");
-			//		break;
-			//	case 2:
-			//		Console.WriteLine("Case 2");
-			//		break;
-			//	default:
-			//		Console.WriteLine("Default case");
-			//		break;
-			//}
+			}
 		}
 		else
 		{
